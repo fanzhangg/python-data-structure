@@ -9,8 +9,8 @@ The respository implements popular data structures in python and introduces some
 - Sorting
 - Trees
 - Graph
-  - Implementation by Adjecent List
-  - [-] Breath First Search
+  - [x]Implementation by Adjecent List
+  - [ ] Breath First Search
   - [ ] Width First Search
   - Word Ladder Problem
   -
