@@ -7,13 +7,18 @@ The respository implements popular data structures in python and introduces some
 - Deque
 - List
 - Sorting
+- Heap
+  - [x] Minheap
+  - [ ] Maxheap
 - Trees
 - Graph
   - [x] Implementation by Adjecent List
   - [ ] Breath First Search
-  - [ ] Width First Search
-  - Word Ladder Problem
-  -
+  - [ ] Depth First Search
+  - [ ] Word Ladder Problem
+  - [ ] The Knight's Tour Problem
+  - [ ] Shortest Path Probelm
+  - [ ] Dijkstra's Algorithm
 
 
 ## References:
