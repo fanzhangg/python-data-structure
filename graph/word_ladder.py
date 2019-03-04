@@ -10,7 +10,6 @@ def get_word_buckets(word_file: str) -> dict:
     buckets = {}
     with open(word_file) as fhand:
         for line in fhand:
-            # TODO: line[:-1]
             word = line.strip()
             for i in range(len(word)):
                 label = ''.join((word[:i], '_', word[i + 1:]))
