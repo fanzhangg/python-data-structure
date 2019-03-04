@@ -1,4 +1,4 @@
-"""Implementation of Graph"""
+"""Implementing Graph in adjacent list"""
 
 
 class Vertex:

@@ -1,4 +1,4 @@
-from graph import Graph
+from list_graph import Graph
 
 
 def get_word_buckets(word_file: str) -> dict:

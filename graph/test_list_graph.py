@@ -1,9 +1,9 @@
 import unittest
 
-from graph import Graph
+from list_graph import Graph
 
 
-class MyTestCase(unittest.TestCase):
+class TestListGraph(unittest.TestCase):
     def test_add_vertex(self):
         g = Graph()
         g.add_vertex(1)
@@ -24,7 +24,6 @@ class MyTestCase(unittest.TestCase):
         values, keys = to_v.values(), to_v.keys()
         self.assertEqual(list(keys)[0].id, 2)
         self.assertEqual(list(values)[0], 3)
-
 
 if __name__ == '__main__':
     unittest.main()
