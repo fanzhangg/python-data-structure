@@ -16,8 +16,8 @@ def factorial(n):
     if n == 1:
         # factorial of 1 is 1, return 1
         # no actual answer is provided until the base case has been reached
-        # function class are saved in the call stack
-        # once the base case has been found, the answer trickles back up the call stack
+        # function class are saved in the call items
+        # once the base case has been found, the answer trickles back up the call items
         # until the final answer is reached
         print(n)
         return 1
