@@ -1,4 +1,4 @@
-# python-data-structure
+# Python Data Structures
 The respository implements popular data structures in python and introduces some applications of the data structures.
 
 ## Table of Content
