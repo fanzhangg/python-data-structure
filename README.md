@@ -3,6 +3,8 @@ The respository implements popular data structures in python and introduces some
 
 ## Table of Content
 - Stack
+  - [x] balanced parentheses
+  - [x] balanced symbols
 - Queue
 - Deque
 - List
