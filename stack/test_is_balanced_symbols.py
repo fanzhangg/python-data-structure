@@ -1,6 +1,6 @@
 import unittest
 
-from balanced_symbol import *
+from stack.balanced_symbol import *
 
 
 class TestBalancedSymbols(unittest.TestCase):

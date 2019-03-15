@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from simple_balanced_parentheses import is_balanced_parentheses
+from stack.simple_balanced_parentheses import is_balanced_parentheses
 
 
 class TestIsBalancedParentheses(TestCase):

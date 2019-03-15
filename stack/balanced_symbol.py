@@ -2,7 +2,7 @@
 Given: A string of mixed symbols
 Output: True if each maintains its own opeen and close relationships; False if not
 """
-from my_stack import Stack
+from stack.stack import Stack
 
 
 def is_balanced_symbols(string: str):

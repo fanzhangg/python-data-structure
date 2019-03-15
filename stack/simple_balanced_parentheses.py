@@ -10,7 +10,7 @@ Observation:
 - Most recent opening parenthesis must match the next closing symbol
 - The first opening symbol processed may have to wait until the very last symbol for its match
 """
-from my_stack import Stack
+from stack.stack import Stack
 
 
 def is_balanced_parentheses(string: str):
