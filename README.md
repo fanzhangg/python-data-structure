@@ -1,7 +1,7 @@
 # Python Data Structures
 The respository implements popular data structures in python and introduces some applications of the data structures.
 
-![A data structure meme] (http://www.cs.toronto.edu/~ylzhang/csc263/memes/dz-2.png)
+![A data structure meme](http://www.cs.toronto.edu/~ylzhang/csc263/memes/dz-2.png)
 
 ## Table of Content
 - Stack
