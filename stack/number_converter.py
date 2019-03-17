@@ -31,3 +31,42 @@ def dec_to_bin(num: int) -> str:
         bin_digit = stack.pop()
         bin_str = "".join((bin_str, str(bin_digit)))
     return bin_str
+
+
+def dec_to_hex(num: int) -> str:
+    """
+    Convert a decimal number to hexadecimal string
+    :param num: a decimal number
+    :return: a hexadecimal string (A for 10, B for 11, ...)
+    """
+    stack = Stack()
+    hex_str = ""
+    digits = "0123456789ABCDEF"
+
+    while num != 0:
+        reminder = num % 16
+        stack.push(reminder)
+        num = num // 16
+
+    while not stack.isempty():
+        digit = stack.pop()
+        hex_str = "".join((hex_str, digits[digit]))
+    return hex_str
+
+
+def dec_to_oct(num: int) -> str:
+    """
+    Convert a decimal number to a octal string
+    """
+    stack = Stack()
+    oct_str = ""
+
+    while num != 0:
+        reminder = num % 8
+        stack.push(reminder)
+        num = num // 8
+
+    while not stack.isempty():
+        digit = stack.pop()
+        oct_str = "".join((oct_str, str(digit)))
+    return oct_str
