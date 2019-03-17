@@ -19,3 +19,6 @@ class Stack(object):
 
     def isempty(self):
         return self.items == []
+
+    def __iter__(self):
+        return iter(self.items)
