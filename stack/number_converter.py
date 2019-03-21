@@ -70,3 +70,8 @@ def dec_to_oct(num: int) -> str:
         digit = stack.pop()
         oct_str = "".join((oct_str, str(digit)))
     return oct_str
+
+
+if __name__ == "__main__":
+    print(dec_to_oct(25))
+    print(dec_to_hex(256))
