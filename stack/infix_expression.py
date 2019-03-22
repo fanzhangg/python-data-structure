@@ -47,31 +47,25 @@ Algorithm:
 - If the token is an operator other than parenthesis, move any operators on the stack with a higher or equal precedence and
   append them to the output list, and push it on the stack.
 """
+import re
+
 from stack import Stack
 
 
 def ge_precedence(a: str, b: str) -> bool:
-    precedences = {"(": 0, "+": 1, "-": 1, "*": 2, "/": 2}
+    precedences = {"(": 0, "+": 1, "-": 1, "*": 2, "/": 2, "**": 3}
     return precedences[a] >= precedences[b]
 
 
-def format_infix(infix: str) -> str:
-    infix_list = []
-    curr_operand = ""
-    for char in infix:
-        if char in "+-*/()":
-            if not curr_operand == "":
-                infix_list.append(curr_operand)
-                curr_operand = ""
-            infix_list.append(char)
-        elif char in "1234567890.":
-            curr_operand += char
-        elif char in " ":
-            pass
-        else:
-            raise SyntaxError()
-    infix_list.append(curr_operand)
-    return " ".join(infix_list)
+def infix_str_to_list(infix: str) -> list:
+    """
+    Convert an infix str to list (Does not consider negative number)
+    Look for either int or float or any character which isn't digit or a space
+    """
+    if re.search("[^ 0-9.()+\-*/]", infix):
+        raise SyntaxError("invalid syntax")
+    number_or_symbol = re.compile("(\d*\.\d+|\d+|[()]|[^ 0-9()]+)")
+    return re.findall(number_or_symbol, infix)
 
 
 def infix_to_postfix(infix: str) -> str:
@@ -81,9 +75,9 @@ def infix_to_postfix(infix: str) -> str:
     """
     operator_stack = Stack()
     postfix_list = []
-    tokens = infix.split()
+    tokens = infix_str_to_list(infix)
     for token in tokens:
-        if token not in "+-*/()":
+        if token not in "+-*/()**":
             postfix_list.append(token)
         elif token == "(":
             operator_stack.push(token)
@@ -94,7 +88,7 @@ def infix_to_postfix(infix: str) -> str:
                     break
                 else:
                     postfix_list.append(operator)
-        elif token in "+-*/":
+        elif token in "+-*/**":
             while True:
                 if operator_stack.isempty():
                     break
@@ -121,9 +115,9 @@ def eval_postfix(postfix_str: str) -> float:
     tokens_list = postfix_str.split()
 
     for token in tokens_list:
-        if token in "+-*/":
-            operand1 = operand_stack.pop()
+        if token in "+-*/**":
             operand2 = operand_stack.pop()
+            operand1 = operand_stack.pop()
             result = calc(operand1, token, operand2)
             operand_stack.push(result)
         else:
@@ -144,8 +138,16 @@ def calc(operand1: float, operator: str, operand2: float) -> float:
         "/": operand1 / operand2,
         "-": operand1 - operand2,
         "+": operand1 + operand2,
+        "**": operand1 ** operand2
     }
     try:
         return formula_dict[operator]
     except KeyError:
         raise SyntaxError("invalid operator")
+
+
+if __name__ == "__main__":
+    postfix = infix_to_postfix("5 * 3 ** ( 4 - 2 )")
+    print(postfix)
+    answer = eval_postfix(postfix)
+    print(answer)
