@@ -55,16 +55,33 @@ def ge_precedence(a: str, b: str) -> bool:
     return precedences[a] >= precedences[b]
 
 
-def infix_to_postfix(expression: str) -> str:
+def format_infix(infix: str) -> str:
+    infix_list = []
+    curr_operand = ""
+    for char in infix:
+        if char in "+-*/()":
+            if not curr_operand == "":
+                infix_list.append(curr_operand)
+                curr_operand = ""
+            infix_list.append(char)
+        elif char in "1234567890.":
+            curr_operand += char
+        elif char in " ":
+            pass
+        else:
+            raise SyntaxError()
+    infix_list.append(curr_operand)
+    return " ".join(infix_list)
+
+
+def infix_to_postfix(infix: str) -> str:
     """
     Use a stack to keep the operators. The top of the stack will always be the most recently saved operator.
     When reading the new operator, compare the precedence of the added one and the recently saved one
-    :param expression:
-    :return:
     """
     operator_stack = Stack()
     postfix_list = []
-    tokens = expression.split()
+    tokens = infix.split()
     for token in tokens:
         if token not in "+-*/()":
             postfix_list.append(token)

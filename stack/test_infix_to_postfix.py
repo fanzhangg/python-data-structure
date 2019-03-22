@@ -51,3 +51,13 @@ class TestEvalPostfix(TestCase):
     def test_invalid_operand(self):
         with self.assertRaises(SyntaxError):
             eval_postfix("a b +")
+
+
+class TestFormatInfix(TestCase):
+    def test_valid_case(self):
+        self.assertEqual("1 + 2 * 3", format_infix("1+2*3"))
+        self.assertEqual("( 1 + 2 ) * 3", format_infix("( 1+2)*3  "))
+
+    def test_invalid_char(self):
+        with self.assertRaises(SyntaxError):
+            format_infix("1a * b + c")
