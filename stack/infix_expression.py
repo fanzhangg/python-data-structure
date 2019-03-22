@@ -62,33 +62,73 @@ def infix_to_postfix(expression: str) -> str:
     :param expression:
     :return:
     """
-    stack = Stack()
+    operator_stack = Stack()
     postfix_list = []
     tokens = expression.split()
     for token in tokens:
         if token not in "+-*/()":
             postfix_list.append(token)
         elif token == "(":
-            stack.push(token)
+            operator_stack.push(token)
         elif token == ")":
             while True:
-                operator = stack.pop()
+                operator = operator_stack.pop()
                 if operator == "(":
                     break
                 else:
                     postfix_list.append(operator)
         elif token in "+-*/":
             while True:
-                if stack.isempty():
+                if operator_stack.isempty():
                     break
-                if ge_precedence(stack.peek(), token):
-                    operator = stack.pop()
+                if ge_precedence(operator_stack.peek(), token):
+                    operator = operator_stack.pop()
                     postfix_list.append(operator)
                 else:
                     break
-            stack.push(token)
+            operator_stack.push(token)
 
-    while not stack.isempty():
-        operator = stack.pop()
+    while not operator_stack.isempty():
+        operator = operator_stack.pop()
         postfix_list.append(operator)
     return " ".join(postfix_list)
+
+
+def eval_postfix(postfix_str: str) -> float:
+    """
+    Whenever an operator is seen on the input, the two most recent operands will be used in the evaluation.
+    :param postfix_str:
+    :return:
+    """
+    operand_stack = Stack()
+    tokens_list = postfix_str.split()
+
+    for token in tokens_list:
+        if token in "+-*/":
+            operand1 = operand_stack.pop()
+            operand2 = operand_stack.pop()
+            result = calc(operand1, token, operand2)
+            operand_stack.push(result)
+        else:
+            try:
+                token = float(token)
+            except ValueError:
+                raise SyntaxError("invalid operand")
+            operand_stack.push(token)
+    return operand_stack.pop()
+
+
+def calc(operand1: float, operator: str, operand2: float) -> float:
+    """
+    :return: the answer of the math formula `operand1 operator operand2`
+    """
+    formula_dict = {
+        "*": operand1 * operand2,
+        "/": operand1 / operand2,
+        "-": operand1 - operand2,
+        "+": operand1 + operand2,
+    }
+    try:
+        return formula_dict[operator]
+    except KeyError:
+        raise SyntaxError("invalid operator")
